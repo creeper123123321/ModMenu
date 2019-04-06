@@ -2,9 +2,9 @@ package io.github.prospector.modmenu.gui;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.TextRenderer;
-import net.minecraft.client.gui.widget.ItemListWidget;
+import net.minecraft.class_4280;
 
-public class DescriptionListWidget extends ItemListWidget<DescriptionListWidget.DescriptionItem> {
+public class DescriptionListWidget extends class_4280<DescriptionListWidget.DescriptionItem> {
 
 	private ModItemWidget lastSelected = null;
 	private ModListScreen parent;
@@ -14,11 +14,6 @@ public class DescriptionListWidget extends ItemListWidget<DescriptionListWidget.
 		super(client, width, height, top, bottom, entryHeight);
 		this.parent = parent;
 		this.textRenderer = client.textRenderer;
-	}
-
-	@Override
-	public DescriptionItem getSelectedItem() {
-		return null;
 	}
 
 	@Override
@@ -44,7 +39,7 @@ public class DescriptionListWidget extends ItemListWidget<DescriptionListWidget.
 		super.render(int_1, int_2, float_1);
 	}
 
-	protected class DescriptionItem extends ItemListWidget.Item<DescriptionItem> {
+	protected class DescriptionItem extends class_4280.Item<DescriptionItem> {
 		protected String text;
 
 		public DescriptionItem(String text) {

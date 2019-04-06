@@ -7,7 +7,7 @@ import net.fabricmc.loader.api.ModContainer;
 import net.fabricmc.loader.api.metadata.ModMetadata;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.gui.widget.ItemListWidget;
+import net.minecraft.class_4280;
 import net.minecraft.client.texture.NativeImage;
 import net.minecraft.client.texture.NativeImageBackedTexture;
 import net.minecraft.util.Identifier;
@@ -17,7 +17,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.InputStream;
 
-public class ModItemWidget extends ItemListWidget.Item<ModItemWidget> {
+public class ModItemWidget extends class_4280.Item<ModItemWidget> {
 	private static final Logger LOGGER = LogManager.getLogger();
 	private final MinecraftClient client;
 	public ModContainer container;

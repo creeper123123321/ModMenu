@@ -58,20 +58,12 @@ public class ModListScreen extends Screen {
 		int paneWidth = this.width - paneX;
 
 		int searchBoxWidth = paneX - 32;
-		this.searchBox = new TextFieldWidget(this.font, paneX / 2 - searchBoxWidth / 2, 22, searchBoxWidth, 20, this.searchBox) {
-			@Override
-			public void setFocused(boolean focused) {
-				super.setFocused(true);
-			}
-		};
+		this.searchBox = new TextFieldWidget(this.font, paneX / 2 - searchBoxWidth / 2, 22, searchBoxWidth, 20, this.searchBox);
 		this.searchBox.setChangedListener((string_1) -> this.modList.searchFilter(() -> string_1, false));
 
 		this.modList = new ModListWidget(this.minecraft, paneX, this.height, paneY, this.height - 36, 36, () -> this.searchBox.getText(), this.modList, this);
 		this.descriptionListWidget = new DescriptionListWidget(this.minecraft, paneX + 6, this.height, paneY + 60, this.height - 36, 12, this);
 		this.descriptionListWidget.setLeftPos(paneX + 6);
-
-		this.addButton(new ButtonWidget(this.width / 2 - 154, this.height - 28, 150, 20,
-			ModMenu.noFabric ? "Open Mods Folder" : I18n.translate("modmenu.modsFolder"), button -> SystemUtil.getOperatingSystem().open(new File(FabricLoader.getInstance().getGameDirectory(), "mods"))));
 
 		int configButtonWidth = 100;
 		ButtonWidget configureButton = new ButtonWidget(paneX + paneWidth / 2 - configButtonWidth / 2, modList.getY() + 36, configButtonWidth, 20,
@@ -83,13 +75,16 @@ public class ModListScreen extends Screen {
 				super.render(var1, var2, var3);
 			}
 		};
-		this.addButton(configureButton);
-		this.addButton(new ButtonWidget(this.width / 2 + 4, this.height - 28, 150, 20, I18n.translate("gui.done"), button -> minecraft.openScreen(previousGui)));
 		this.children.add(this.searchBox);
 		this.children.add(this.modList);
+		this.addButton(configureButton);
 		this.children.add(this.descriptionListWidget);
+		this.addButton(new ButtonWidget(this.width / 2 - 154, this.height - 28, 150, 20,
+				ModMenu.noFabric ? "Open Mods Folder" : I18n.translate("modmenu.modsFolder"), button -> SystemUtil.getOperatingSystem().open(new File(FabricLoader.getInstance().getGameDirectory(), "mods"))));
+		this.addButton(new ButtonWidget(this.width / 2 + 4, this.height - 28, 150, 20, I18n.translate("gui.done"), button -> minecraft.openScreen(previousGui)));
+
+		this.setFocused(this.searchBox);
 		this.searchBox.setFocused(true);
-		this.searchBox.method_1856(false);
 	}
 
 	public ModListWidget getModList() {
@@ -103,11 +98,6 @@ public class ModListScreen extends Screen {
 			return true;
 		}
 		return super.keyPressed(var1, var2, var3) || this.searchBox.keyPressed(var1, var2, var3);
-	}
-
-	@Override
-	public boolean charTyped(char var1, int var2) {
-		return this.searchBox.charTyped(var1, var2);
 	}
 
 	@Override
